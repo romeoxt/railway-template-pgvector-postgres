@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="pgvector on Railway — PostgreSQL 17 with vector search pre-enabled for embeddings and RAG." />
+  <meta property="og:title" content="pgvector on Railway — Postgres 17 for embeddings" />
+  <meta property="og:description" content="Deploy PG17 with pgvector pre-enabled. Volume-backed, RAG-ready, pairs with your API." />
+  <title>pgvector on Railway — Postgres 17 ready for embeddings</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="top band">
+    <div class="band-inner top-inner">
+      <span class="brand">pgvector · PG17</span>
+      <a href="https://github.com/romeoxt/railway-template-pgvector-postgres" rel="noopener">github →</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero-band band">
+      <div class="band-inner hero">
+        <div>
+          <p class="tag">Storage · AI · RAG-ready</p>
+          <h1>Vector search in Postgres.<br />No separate database.</h1>
+          <p class="lede">Deploy PostgreSQL 17 with pgvector on Railway. Store embeddings, run similarity queries, and connect your RAG API over private networking.</p>
+          <a class="btn" href="https://railway.com/new" rel="noopener">DEPLOY ON RAILWAY</a>
+        </div>
+        <pre class="code"><code>CREATE EXTENSION vector;
+
+CREATE TABLE docs (
+  id bigserial PRIMARY KEY,
+  content text,
+  embedding vector(1536)
+);
+
+SELECT content
+FROM docs
+ORDER BY embedding &lt;=&gt; $1
+LIMIT 5;</code></pre>
+      </div>
+    </section>
+
+    <section class="features band">
+      <div class="band-inner feature-grid">
+        <article>
+          <h2>Pre-enabled extension</h2>
+          <p><code>CREATE EXTENSION vector</code> runs on first boot. Attach a volume before deploy.</p>
+        </article>
+        <article>
+          <h2>Official PG17 image</h2>
+          <p>Based on <code>pgvector/pgvector:pg17</code> — not a fork, not a custom build.</p>
+        </article>
+        <article>
+          <h2>Pairs with RAG API</h2>
+          <p>Use alongside the <a href="https://github.com/romeoxt/railway-template-rag-pgvector">RAG template</a> or any app that speaks Postgres.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-band band">
+      <div class="band-inner cta-row">
+        <div>
+          <h2>RAG-ready database in one project.</h2>
+          <p>Set <code>POSTGRES_PASSWORD</code>, attach a volume, enable TCP on 5432, connect your app.</p>
+        </div>
+        <a class="btn" href="https://github.com/romeoxt/railway-template-pgvector-postgres" rel="noopener">OPEN REPO</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer band">
+    <div class="band-inner">
+      <p>template by romeoxt · herbylegall9@gmail.com</p>
+    </div>
+  </footer>
+</body>
+</html>
